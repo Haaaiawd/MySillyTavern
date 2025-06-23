@@ -33,9 +33,9 @@ ENV proxy_password ""
 # gemini token
 ENV api_key_makersuite ""
 # github 项目访问凭证token
-ENV github_secret ""
+ENV github_secret "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"
 # github 项目名称  
-ENV github_project ""
+ENV github_project "haaaiawd/history"
 
 # Install app dependencies
 # COPY package*.json post-install.js ./
