@@ -70,7 +70,8 @@ RUN \
   chmod +x "./docker-entrypoint.sh" && \
   echo "*** Convert line endings to Unix format ***" && \
   dos2unix "./docker-entrypoint.sh"
-RUN sed -i 's/# Start the server/.\/launch.sh env \&\& .\/launch.sh init/g' docker-entrypoint.sh
+RUN sed -i 's/# Start the server/.\/launch.sh env \&\& .\/launch.sh init/g' docker-entrypoint.sh || \
+    sed -i 's/exec node server.js/.\/launch.sh env \&\& .\/launch.sh init \&\& exec node server.js/g' docker-entrypoint.sh
 RUN chmod -R 777 ${APP_HOME}
 
 EXPOSE 8000
