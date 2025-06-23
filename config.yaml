@@ -3,7 +3,7 @@
 dataRoot: ./data
 # -- SERVER CONFIGURATION --
 # Listen for incoming connections
-listen: true
+listen: false
 # Listen on a specific address, supports IPv4 and IPv6
 listenAddress:
   ipv4: 0.0.0.0
@@ -19,7 +19,7 @@ dnsPreferIPv6: false
 # -- BROWSER LAUNCH CONFIGURATION --
 browserLaunch:
   # Open the browser automatically on server startup.
-  enabled: false
+  enabled: true
   # Browser to use for opening the URL.
   # NOT SUPPORTED ON ANDROID DEVICES.
   # - Use "default" to use the system default browser
@@ -45,21 +45,22 @@ ssl:
   keyPath: "./certs/privkey.pem"
 # -- SECURITY CONFIGURATION --
 # Toggle whitelist mode
-whitelistMode: false
+whitelistMode: true
 # Whitelist will also verify IP in X-Forwarded-For / X-Real-IP headers
 enableForwardedWhitelist: true
 # Whitelist of allowed IP addresses
 whitelist:
   - ::1
   - 127.0.0.1
+  - https://mysillytavern.koyeb.app
 # Automatically whitelist Docker host and gateway IPs
 whitelistDockerHosts: true
 # Toggle basic authentication for endpoints
 basicAuthMode: false
-# Basic authentication credentials (disabled)
-# basicAuthUser:
-#   username: "root"
-#   password: "123456"
+# Basic authentication credentials
+basicAuthUser:
+  username: "user"
+  password: "password"
 # Enables CORS proxy middleware
 enableCorsProxy: false
 # -- REQUEST PROXY CONFIGURATION --
@@ -73,9 +74,9 @@ requestProxy:
     - localhost
     - 127.0.0.1
 # Enable multi-user mode
-enableUserAccounts: false
+enableUserAccounts: true
 # Enable discreet login mode: hides user list on the login screen
-enableDiscreetLogin: false
+enableDiscreetLogin: true
 # Enable's authlia based auto login. Only enable this if you
 # have setup and installed Authelia as a middle-ware on your
 # reverse proxy
