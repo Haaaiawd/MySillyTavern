@@ -67,12 +67,16 @@ function init() {
   sed -i "s/username: .*/username: \"${USERNAME}\"/" ${BASE}/config.yaml
   sed -i "s/password: .*/password: \"${PASSWORD}\"/" ${BASE}/config.yaml
   sed -i "s/whitelistMode: true/whitelistMode: false/" ${BASE}/config.yaml
-  sed -i "s/basicAuthMode: false/basicAuthMode: true/" ${BASE}/config.yaml
+  # sed -i "s/basicAuthMode: false/basicAuthMode: true/" ${BASE}/config.yaml  # 禁用强制basic auth
   cat config.yaml
   echo "Init history."
   chmod -R 777 history
 
-  nohup ./git-batch --commit 10s --name git-batch --email git-batch@github.com --push 1m -p history > access.log 2>1 &
+  echo "Starting git-batch process..."
+  echo "Command: ./git-batch --commit 10s --name git-batch --email git-batch@github.com --push 1m -p history"
+  nohup ./git-batch --commit 10s --name git-batch --email git-batch@github.com --push 1m -p history > access.log 2>&1 &
+  GIT_BATCH_PID=$!
+  echo "git-batch started with PID: $GIT_BATCH_PID"
 }
 
 function release() {
