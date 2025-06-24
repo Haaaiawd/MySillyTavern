@@ -84,9 +84,9 @@ function init() {
   git config --global init.defaultBranch main
   git init
   
-  # Construct the full GitHub URL
-  GITHUB_URL="https://${github_secret}@github.com/${github_project}.git"
-  echo "GitHub URL: https://***@github.com/${github_project}.git"
+  # Construct the full GitHub URL with proper authentication
+  GITHUB_URL="https://${github_secret}:x-oauth-basic@github.com/${github_project}.git"
+  echo "GitHub URL: https://***:x-oauth-basic@github.com/${github_project}.git"
   
   git remote add origin "${GITHUB_URL}"
   git add .
